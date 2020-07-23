@@ -10,13 +10,25 @@ function Signup(props) {
     const [isError, setIsError] = useState(false);
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setconfirmPassword] = useState("");
     const { setAuthTokens } = useAuth();
     const referer = props.referer || '/';
+
+
+    function handleSubmit () {
+      if (password !== confirmPassword) {
+        alert("Passwords don't match");
+      } else {
+        alert("You have successfully created an account!")
+      }
+    }
   
     function postSignup() {
+      
       axios.post("https://www.somePlace.com/auth/signup", {
         userName,
-        password
+        password,
+        confirmPassword
       }).then(result => {
         if (result.status === 200) {
           setAuthTokens(result.data);
@@ -56,17 +68,27 @@ function Signup(props) {
             />
             <Input
               type="password"
-              value={password}
+              value={confirmPassword}
               onChange={e => {
-                setPassword(e.target.value);
+                setconfirmPassword(e.target.value);
               }}
               placeholder="password again"
             />
-            <Button onClick={postSignup}>Sign Up</Button>
+            <Button onClick={postSignup}
+            onClick={handleSubmit}>Sign Up</Button>
           </Form>
-          <Link to="/signup">Don't have an account?</Link>
-            { isError &&<Error>The passwords you provided do not match!</Error> }
         </Card>
+
+        
+
       );
+
+
     }
+
+  
+
+
+
+
 export default Signup;
