@@ -25,7 +25,7 @@ function Signup(props) {
   
     function postSignup() {
       
-      axios.post("https://www.somePlace.com/auth/signup", {
+      axios.post('http://localhost:3000/api/add', {
         userName,
         password,
         confirmPassword

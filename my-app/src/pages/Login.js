@@ -14,7 +14,7 @@ function Login(props) {
   const referer = props.referer || '/';
 
   function postLogin() {
-    axios.post("https://www.somePlace.com/auth/login", {
+    axios.post('http://localhost:3000/api/add', {
       userName,
       password
     }).then(result => {
