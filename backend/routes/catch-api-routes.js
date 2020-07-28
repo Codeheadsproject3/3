@@ -5,67 +5,67 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the posts
-  app.get("/api/posts", function(req, res) {
+  // GET route for getting catch thread
+  app.get("/api/thread", function(req, res) {
     var query = {};
-    if (req.query.author_id) {
-      query.AuthorId = req.query.author_id;
+    if (req.query.user_id) {
+      query.UserId = req.query.user_id;
     }
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
+    // In this case, just db.User
     db.Post.findAll({
-      // where: {AuthorId: req.query.author_id},
+      // where: {UserId: req.query.user_id},
       where: query,
-      include: [db.Author]
-    }).then(function(dbPost) {
-      res.json(dbPost);
+      include: [db.User]
+    }).then(function(dbCatch) {
+      res.json(dbCatch);
     });
   });
 
   // Get route for retrieving a single post
-  app.get("/api/posts/:id", function(req, res) {
+  app.get("/api/thread/:id", function(req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Author
-    db.Post.findOne({
+    // In this case, just db.User
+    db.Catch.findOne({
       where: {
         id: req.params.id
       },
-      include: [db.Author]
-    }).then(function(dbPost) {
-      res.json(dbPost);
+      include: [db.User]
+    }).then(function(dbCatch) {
+      res.json(dbCatch);
     });
   });
 
   // POST route for saving a new post
-  app.post("/api/posts", function(req, res) {
-    db.Post.create(req.body).then(function(dbPost) {
-      res.json(dbPost);
+  app.post("/api/thread", function(req, res) {
+    db.Catch.create(req.body).then(function(dbCatch) {
+      res.json(dbCatch);
     });
   });
 
-  // DELETE route for deleting posts
-  app.delete("/api/posts/:id", function(req, res) {
-    db.Post.destroy({
+  // DELETE route for deleting thread
+  app.delete("/api/thread/:id", function(req, res) {
+    db.Catch.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(dbPost) {
-      res.json(dbPost);
+    }).then(function(dbCatch) {
+      res.json(dbCatch);
     });
   });
 
-  // PUT route for updating posts
-  app.put("/api/posts", function(req, res) {
-    db.Post.update(
+  // PUT route for updating thread
+  app.put("/api/thread", function(req, res) {
+    db.Catch.update(
       req.body,
       {
         where: {
           id: req.body.id
         }
-      }).then(function(dbPost) {
-      res.json(dbPost);
+      }).then(function(dbCatch) {
+      res.json(dbCatch);
     });
   });
 };

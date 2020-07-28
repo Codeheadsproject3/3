@@ -10,22 +10,22 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
+    res.sendFile(path.join(__dirname, "../public/catch.html"));
   });
 
-  // cms route loads cms.html
-  app.get("/cms", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  // cms route loads builder.html
+  app.get("/builder", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/builder.html"));
   });
 
-  // blog route loads blog.html
-  app.get("/blog", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/blog.html"));
+  // blog route loads catch.html
+  app.get("/catch", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/catch.html"));
   });
 
-  // authors route loads author-manager.html
-  app.get("/authors", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/author-manager.html"));
+  // authors route loads user-manager.html
+  app.get("/user", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/user-manager.html"));
   });
 
 };
