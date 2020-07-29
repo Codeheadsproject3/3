@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
 // sequelize (lowercase) references our connection to the DB.
-var sequelize = require("../server.js");
+
 
 // Creates a "Character" model that matches up with DB
 var Authentication = sequelize.define("authentication", {
