@@ -10,6 +10,22 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//ROUTE TO USER SIGNUP
+app.post('/signup',(req, res) => {
+  let data = {name: req.body.userName, password: req.body.password};
+  console.log (data); 
+  
+  // create database user
+db.User.create(data).then((createdUserRecord, err) => {
+  if (err) {
+      res.json("signup failed")
+      return;
+  }
+  res.json({record: createdUserRecord, status: 200});
+})
+});
+
+
 // Static directory to be served
 // app.use(express.static("app/public";
 
