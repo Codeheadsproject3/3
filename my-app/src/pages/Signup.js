@@ -25,7 +25,7 @@ function Signup(props) {
   
     function postSignup() {
       
-      axios.post('http://localhost:3000/api/add', {
+      axios.post('/signup', {
         userName,
         password,
         confirmPassword
@@ -75,7 +75,7 @@ function Signup(props) {
               placeholder="password again"
             />
             <Button onClick={postSignup}
-            onClick={handleSubmit}>Sign Up</Button>
+            >Sign Up</Button>
           </Form>
         </Card>
 
