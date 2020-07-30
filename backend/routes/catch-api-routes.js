@@ -6,7 +6,7 @@ var db = require("../models");
 module.exports = function(app) {
 
   // GET route for getting catch thread
-  app.get("/api/thread", function(req, res) {
+  app.get("/api/catch", function(req, res) {
     var query = {};
     if (req.query.user_id) {
       query.UserId = req.query.user_id;
@@ -24,7 +24,7 @@ module.exports = function(app) {
   });
 
   // Get route for retrieving a single post
-  app.get("/api/thread/:id", function(req, res) {
+  app.get("/api/catch/:id", function(req, res) {
     // Here we add an "include" property to our options in our findOne query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.User
@@ -39,14 +39,14 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new post(HERE GOES THE MULTER UPLOAD)
-  app.post("/api/thread", function(req, res) {
+  app.post("/api/catch", function(req, res) {
     db.Catch.create(req.body).then(function(dbCatch) {
       res.json(dbCatch);
     });
   });
 
-  // DELETE route for deleting thread
-  app.delete("/api/thread/:id", function(req, res) {
+  // DELETE route for deleting catch
+  app.delete("/api/catch/:id", function(req, res) {
     db.Catch.destroy({
       where: {
         id: req.params.id
@@ -56,8 +56,8 @@ module.exports = function(app) {
     });
   });
 
-  // PUT route for updating thread
-  app.put("/api/thread", function(req, res) {
+  // PUT route for updating catch
+  app.put("/api/catch", function(req, res) {
     db.Catch.update(
       req.body,
       {
