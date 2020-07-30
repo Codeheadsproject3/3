@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../components/AuthForms";
 import { useAuth } from "../context/auth";
 
+
 function Admin(props) {
   const { setAuthTokens } = useAuth();
 
@@ -11,7 +12,7 @@ function Admin(props) {
 
   return (
     <div>
-      <div>Admin Page</div>
+      <div>Log in</div>
       <Button onClick={logOut}>Log out</Button>
     </div>
   );

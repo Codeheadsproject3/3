@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "oshkosh",
+    "password": "a123456b",
     "database": "fishify_development",
     "host": "127.0.0.1",
     "dialect": "mysql"
