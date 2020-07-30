@@ -38,7 +38,7 @@ module.exports = function(app) {
     });
   });
 
-  // POST route for saving a new post
+  // POST route for saving a new post(HERE GOES THE MULTER UPLOAD)
   app.post("/api/thread", function(req, res) {
     db.Catch.create(req.body).then(function(dbCatch) {
       res.json(dbCatch);

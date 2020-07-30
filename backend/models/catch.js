@@ -1,5 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Catch = sequelize.define("Catch", {
+
+      // HERE THE IMAGE RENDERS INTO THE PAGE
       name: {
         type: DataTypes.STRING,
         allowNull: false,
