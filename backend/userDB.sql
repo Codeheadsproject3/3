@@ -16,7 +16,7 @@ CREATE DATABASE fishify_development;
 -- );
 
 CREATE TABLE catch(
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT primary key NOT,
     location VARCHAR (30) NOT NULL,
     weight VARCHAR (30) NOT NULL,
     length INTEGER (30) NOT NULL,

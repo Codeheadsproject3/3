@@ -15,6 +15,11 @@ app.post('/login',(req, res) => {
     console.log (data); // find database user copmpare password if correct send back to frontend saying login is successful
     res.end();
 })
+app.post('/catch',(req, res) => {
+    let data = {location: req.body.location, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition};
+    console.log (data); // post catch
+   
+});
 
   
 app.listen(PORT, () => {

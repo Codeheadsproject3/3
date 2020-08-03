@@ -25,6 +25,13 @@ db.User.create(data).then((createdUserRecord, err) => {
 })
 });
 
+app.post('/catch',(req, res) => {
+  let data = {location: req.body.location, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition};
+  console.log (data); // create catch table
+ 
+});
+
+
 
 // Static directory to be served
 // app.use(express.static("app/public";
