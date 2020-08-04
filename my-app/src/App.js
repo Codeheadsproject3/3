@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import './App.css';
 
+import Catch from './pages/Catch';
 
 function App(props) {
   const [authTokens, setAuthTokens] = 
@@ -21,12 +22,22 @@ function App(props) {
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
-        <div class="row">
-          <div class="col-12">
-
+     
+        <ul>
+          <li>
+            <Link to="/">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/admin">Sign up</Link>
+          </li>
+          <li>
+            <Link to="/catch">Catches</Link>
+          </li>
+        </ul>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/catch" component={Catch} />
           <PrivateRoute path="/admin" component={Admin} />
         
             <div class="btn btn-large blue darken-4 white-text">
@@ -34,8 +45,7 @@ function App(props) {
             </div>
             <div class="btn btn-large blue darken-4 white-text">
               <Link to="/admin">Log in</Link></div>
-            </div>
-        </div>
+           
       </Router>
     </AuthContext.Provider>
   );
