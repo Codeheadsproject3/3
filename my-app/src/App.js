@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import './App.css';
 
 import Catch from './pages/Catch';
+import Dashboard from "./pages/Dashboard";
 
 
 function App(props) {
@@ -25,20 +26,26 @@ function App(props) {
       <Router>
      
         <ul>
-          <li>
-            <Link to="/">Dashboard</Link>
-          </li>
+          {/* <li>
+            <Link to="/">Home Page</Link>
+          </li> */}
           <li>
             <Link to="/admin">Sign up</Link>
           </li>
           <li>
             <Link to="/catch">Catches</Link>
           </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+
         </ul>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/catch" component={Catch} />
+          <Route path="/dashboard" component={Dashboard} />
+
           <PrivateRoute path="/admin" component={Admin} />
         
             <div class="btn btn-large blue darken-4 white-text">
