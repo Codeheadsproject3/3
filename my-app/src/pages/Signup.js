@@ -23,8 +23,9 @@ function Signup(props) {
       }
     }
   
-    function postSignup() {
-      
+    function postSignup(e) {
+      e.preventDefault()
+
       axios.post('/signup', {
         userName,
         password,

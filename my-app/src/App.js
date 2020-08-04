@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import './App.css';
 
 
+
 function App(props) {
   const [authTokens, setAuthTokens] = 
   useState(localStorage.getItem('authTokens') || '');
@@ -35,10 +36,15 @@ function App(props) {
             <div class="btn btn-large blue darken-4 white-text">
               <Link to="/admin">Log in</Link></div>
             </div>
+
         </div>
+
       </Router>
     </AuthContext.Provider>
+   
   );
+
+
 }
 
 export default App;
