@@ -10,6 +10,7 @@ import './App.css';
 
 import Catch from './pages/Catch';
 
+
 function App(props) {
   const [authTokens, setAuthTokens] = 
   useState(localStorage.getItem('authTokens') || '');
@@ -45,10 +46,14 @@ function App(props) {
             </div>
             <div class="btn btn-large blue darken-4 white-text">
               <Link to="/admin">Log in</Link></div>
+
            
       </Router>
     </AuthContext.Provider>
+   
   );
+
+
 }
 
 export default App;
