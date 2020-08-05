@@ -10,6 +10,8 @@ import './App.css';
 
 import Catch from './pages/Catch';
 import Dashboard from "./pages/Dashboard";
+import Information from "./pages/Information";
+
 
 
 function App(props) {
@@ -38,6 +40,10 @@ function App(props) {
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
+          <li>
+            <Link to="/information">Information</Link>
+          </li>
+
 
         </ul>
           <Route exact path="/" component={Home} />
@@ -45,6 +51,7 @@ function App(props) {
           <Route path="/signup" component={Signup} />
           <Route path="/catch" component={Catch} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/information" component={Information} />
 
           <PrivateRoute path="/admin" component={Admin} />
         
