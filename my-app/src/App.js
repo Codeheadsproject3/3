@@ -7,10 +7,10 @@ import { AuthContext } from "./context/auth";
 import Login from "./pages/Login";
 import Signup from './pages/Signup';
 import './App.css';
-
 import Catch from './pages/Catch';
 import Dashboard from "./pages/Dashboard";
 import Information from "./pages/Information";
+import Upload from "./pages/Upload"
 
 
 
@@ -27,39 +27,25 @@ function App(props) {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
      
-        <ul>
-          {/* <li>
-            <Link to="/">Home Page</Link>
-          </li> */}
-          <li>
-            <Link to="/admin">Sign up</Link>
-          </li>
-          <li>
-            <Link to="/catch">Catches</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/information">Information</Link>
-          </li>
-
-
-        </ul>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/catch" component={Catch} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/information" component={Information} />
+          <Route path="/Upload" component={Upload} />
 
           <PrivateRoute path="/admin" component={Admin} />
         
             <div class="btn btn-large blue darken-4 white-text">
-            <Link to="/">Home Page</Link>
+                  <Link to="/">Home Page</Link>
             </div>
             <div class="btn btn-large blue darken-4 white-text">
-              <Link to="/admin">Log in</Link></div>
+                  <Link to="/admin">Log in</Link>
+            </div>
+            <div class="btn btn-large blue darken-4 white-text">
+                  <Link to="/dashboard">Dashboard</Link>
+            </div>
 
            
       </Router>

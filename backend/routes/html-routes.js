@@ -18,14 +18,19 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/builder.html"));
   });
 
-  // blog route loads catch.html
+  // catch route loads catch.html
   app.get("/catch", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/catch.html"));
   });
 
-  // authors route loads user-manager.html
+  // user route loads user-manager.html
   app.get("/user", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/user-manager.html"));
   });
+
+    // upload route loads catch.html
+    app.get("/upload", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/upload.html"));
+    });
 
 };
