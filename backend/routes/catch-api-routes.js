@@ -76,7 +76,7 @@ module.exports = function(app) {
   });
 
   // POST route for saving a new post
-    app.get("/api/catch", (req, res) => res.render("index"));
+    // app.get("/api/catch", (req, res) => res.render("index"));
     app.post("/upload2", upload, (req, res) => {
       console.log(req.file);
       let filePath = "/uploads/" + req.file.filename;
