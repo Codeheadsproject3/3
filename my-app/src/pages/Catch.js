@@ -20,10 +20,11 @@ function Catch(props) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setconfirmPassword] = useState("");
-    const { setAuthTokens } = useAuth();
+    const { authTokens } = useAuth();
   
 
   function postCatch() {
+    let userId = authTokens.record.id
     axios.post('/catch', {
       location,
       weight,
@@ -33,8 +34,10 @@ function Catch(props) {
       date,
       fish,
       temperature,
-      weathercondition
+      weathercondition,
+      userId
     }) 
+    // .then
     }
   
 

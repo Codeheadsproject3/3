@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
     var Catch = sequelize.define("Catch", {
 
       // HERE THE IMAGE RENDERS INTO THE PAGE
-      name: {
+      location: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -14,37 +14,33 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      location: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      kind_of_bait: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
       time: {
+        type: DataTypes.TIME,
+        allowNull: false,
+      },
+      bait: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
       date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      fish: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      type_of_fish: {
+      temperature: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      weather_temperature: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      weather_conditions: {
+      weathercondition: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
       img: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     });
   
