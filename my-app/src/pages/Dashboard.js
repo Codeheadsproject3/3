@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Logo, Form, Input, Button, Error } from "../components/AuthForms";
+import { Logo, Form, Input, Button, Error } from "../components/AuthForms";
 import postSignup from './Signup';
 import { createBrowserHistory as history} from 'history';
 import Upload from "./Upload"
