@@ -13,8 +13,13 @@ function Login(props) {
   const { setAuthTokens } = useAuth();
   const referer = props.referer || '/';
 
+
   function postLogin() {
-    axios.post('http://localhost:3000/api/add', {
+    if (isLoggedIn) {
+      return <Redirect to={referer} />;
+    }else{ 
+      
+    axios.get('http://localhost:3000/api/users/:id', {
       userName,
       password
     }).then(result => {
@@ -28,6 +33,7 @@ function Login(props) {
       setIsError(true);
     });
   }
+}
 
   if (isLoggedIn) {
     return <Redirect to={referer} />;

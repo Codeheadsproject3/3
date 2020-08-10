@@ -37,7 +37,7 @@ function Catch(props) {
       weathercondition,
       userId
     }) 
-    // .then
+    // .then gotta finish this lines...
     }
   
 
