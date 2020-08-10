@@ -1,4 +1,6 @@
+var path = require('path');
 var express = require("express");
+var app = express();
 // Requiring our models for syncing
 var db = require("./models");
 
@@ -11,6 +13,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // PUBLIC STATIC FOLDER
 app.use(express.static("public"));
+
+// serving index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+//telling express to serve up the public folder
+var publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
 
 //ROUTE TO USER SIGNUP
 app.post('/signup',(req, res) => {
@@ -28,7 +39,7 @@ db.User.create(data).then((createdUserRecord, err) => {
 });
 
 app.post('/catch',(req, res) => {
-  let data = {location: req.body.location, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId};
+  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId};
   console.log (data); // create catch table
  db.Catch.create(data).then(function(dbcatch){ 
    console.log(dbcatch)
@@ -109,3 +120,6 @@ db.sequelize.sync({ force: true }).then(function() {
     });
   });
 
+// app.listen(port, (8080) => {
+//   console.log('Server is up on port ${8080}!');
+// });

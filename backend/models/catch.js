@@ -2,7 +2,11 @@ module.exports = function(sequelize, DataTypes) {
     var Catch = sequelize.define("Catch", {
 
       // HERE THE IMAGE RENDERS INTO THE PAGE
-      location: {
+      latitude: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      longitude: {
         type: DataTypes.STRING,
         allowNull: false,
       },

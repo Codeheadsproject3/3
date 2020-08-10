@@ -6,7 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from "../context/auth";
 
 function Catch(props) {
-  const [location, setLocation] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   const [weight, setWeight] = useState("");
   const [length, setLength] = useState("");
   const [bait, setBait] = useState("");
@@ -26,7 +27,8 @@ function Catch(props) {
   function postCatch() {
     let userId = authTokens.record.id
     axios.post('/catch', {
-      location,
+      latitude,
+      longitude,
       weight,
       length,
       bait,
@@ -47,11 +49,19 @@ function Catch(props) {
       <Form>
         <Input
           type="number"
-          value={location}
+          value={latitude}
           onChange={e => {
-            setLocation(e.target.value);
+            setLatitude(e.target.value);
           }}
-          placeholder="coordinates"
+          placeholder="latitude"
+        />
+        <Input
+          type="number"
+          value={longitude}
+          onChange={e => {
+            setLongitude(e.target.value);
+          }}
+          placeholder="longitude"
         />
         <Input
           type="number"
