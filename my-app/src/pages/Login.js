@@ -19,7 +19,7 @@ function Login(props) {
       return <Redirect to={referer} />;
     }else{ 
       
-    axios.get('http://localhost:3000/api/users/:id', {
+    axios.get('/signup', {
       userName,
       password
     }).then(result => {
