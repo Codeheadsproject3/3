@@ -3,11 +3,19 @@ var express = require("express");
 var app = express();
 // Requiring our models for syncing
 var db = require("./models");
+var catchapiroutes = require("./routes/catch-api-routes")
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
+
+app 
+    .use(express.static('../public'))
+    .get('*',function (req,res) {
+        res.sendFile('../public/index.html');
+        })
+ .listen(8080);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -48,7 +56,7 @@ db.User.create(data).then((createdUserRecord, err) => {
 });
 
 app.post('/catch',(req, res) => {
-  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId, img: filePath};
+  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId};
   console.log (data); // create catch table
  db.Catch.create(data).then(function(dbcatch){ 
    console.log(dbcatch)
@@ -56,6 +64,7 @@ app.post('/catch',(req, res) => {
  })
 });
 
+catchapiroutes(app);
 // When the server starts, create and save a new User document to the db
 db.User.create({ name: "" })
   .then(function(dbUser) {

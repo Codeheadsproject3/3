@@ -16,6 +16,7 @@ function Catch(props) {
   const [fish, setFish] = useState("");
   const [temperature, setTemperature] = useState("");
   const [weathercondition, setWeatherCondition] = useState("");
+  const [image, setImage] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
     const [userName, setUserName] = useState("");
@@ -26,24 +27,26 @@ function Catch(props) {
 
   function postCatch() {
     let userId = authTokens.record.id
-    axios.post('/catch', {
-      latitude,
-      longitude,
-      weight,
-      length,
-      bait,
-      time,
-      date,
-      fish,
-      temperature,
-      weathercondition,
-      userId
-    }) 
+    let formData = new FormData();
+    formData.append("userId", userId)
+    formData.append("latitude", latitude)
+    formData.append("longitude", longitude)
+    formData.append("weight", weight)
+    formData.append("length", length)
+    formData.append("bait", bait)
+    formData.append("time", time)
+    formData.append("date", date)
+    formData.append("fish", fish)
+    formData.append("temperature", temperature)
+    formData.append("weathercondition", weathercondition)
+    formData.append("image", image)
+    axios.post('/api/catch', formData) 
+      
+     
     // .then gotta finish this lines...
     }
   
-
-
+    
   return (
     <Card>
       <Form>
@@ -126,6 +129,15 @@ function Catch(props) {
         console.log(e.target.value);
       }}
       placeholder="sunny? cloudy? rainy?"
+    />
+    <Input
+      type="file"
+      value={image}
+      onChange={e => {
+        setImage(e.target.value);
+        console.log(e.target.value);
+      }}
+      
     />
 
         <Button onClick={postCatch}>Post your catch</Button>
