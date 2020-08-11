@@ -20,9 +20,10 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 1000000 },
   fileFilter: function (req, file, cb) {
+    console.log(file);
     checkFileType(file, cb);
   },
-}).single("myImage");
+}).single("image");
 
 function checkFileType(file, cb) {
   // ALLOED FILE EXTENSIONS
@@ -77,9 +78,10 @@ module.exports = function(app) {
     });
   });
 
-  app.post('/api/catch', upload, (req, res) => {
+  app.post('/api/catch', upload, (req, res, next) => {
+    console.log(req.file)
     let filePath = "/uploads/" + req.file.filename;
-    let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId, image: filePath};
+    let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId, img: filePath};
     console.log (data); // create catch table
    db.Catch.create(data).then(function(dbcatch){ 
      console.log(dbcatch)

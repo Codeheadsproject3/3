@@ -17,6 +17,7 @@ function Catch(props) {
   const [temperature, setTemperature] = useState("");
   const [weathercondition, setWeatherCondition] = useState("");
   const [image, setImage] = useState("");
+  const [dummyimage, setDummyImage] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
     const [userName, setUserName] = useState("");
@@ -25,7 +26,8 @@ function Catch(props) {
     const { authTokens } = useAuth();
   
 
-  function postCatch() {
+  function postCatch(e) {
+    e.preventDefault()
     let userId = authTokens.record.id
     let formData = new FormData();
     formData.append("userId", userId)
@@ -40,7 +42,7 @@ function Catch(props) {
     formData.append("temperature", temperature)
     formData.append("weathercondition", weathercondition)
     formData.append("image", image)
-    axios.post('/api/catch', formData) 
+    axios.post('/api/catch', formData, {headers: {'Content-Type': 'multipart/form-data' }}) 
       
      
     // .then gotta finish this lines...
@@ -132,11 +134,13 @@ function Catch(props) {
     />
     <Input
       type="file"
-      value={image}
+      value={dummyimage}
       onChange={e => {
-        setImage(e.target.value);
+        setDummyImage(e.target.value)
+        setImage(e.target.files[0]);
         console.log(e.target.value);
       }}
+
       
     />
 
