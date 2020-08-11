@@ -78,10 +78,12 @@ module.exports = function(app) {
 
   // POST route for saving a new post
     // app.get("/api/catch", (req, res) => res.render("index"));
-    app.post("/upload2", upload, (req, res) => {
+    app.post("/upload2/:catchId", upload, (req, res) => {
       console.log(req.file);
       let filePath = "/uploads/" + req.file.filename;
-      db.File.create({ url: filePath }).then((dbFile) => res.json(dbFile));
+      db.catch.update({ img: filePath }, {where: {
+        id: req.params.catchId
+      }}).then((dbFile) => res.json(dbFile));
     });
     
     app.post("/upload", (req, res) => {

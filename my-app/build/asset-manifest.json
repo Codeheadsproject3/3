@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c6ac2bae.chunk.css",
+    "main.js": "/static/js/main.0ac80384.chunk.js",
+    "main.js.map": "/static/js/main.0ac80384.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.83c3e0c4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.83c3e0c4.js.map",
+    "static/js/2.b6629db0.chunk.js": "/static/js/2.b6629db0.chunk.js",
+    "static/js/2.b6629db0.chunk.js.map": "/static/js/2.b6629db0.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f2bc1efa361bb86c6a50a20d42c28663.js": "/precache-manifest.f2bc1efa361bb86c6a50a20d42c28663.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.c6ac2bae.chunk.css.map": "/static/css/main.c6ac2bae.chunk.css.map",
+    "static/js/2.b6629db0.chunk.js.LICENSE.txt": "/static/js/2.b6629db0.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/fisherman-591699_1920.e6b9192b.jpg",
+    "static/media/App.css": "/static/media/lake-3362156_1920.8d2c57af.jpg",
+    "static/media/logo.png": "/static/media/logo.6f8a211b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.83c3e0c4.js",
+    "static/js/2.b6629db0.chunk.js",
+    "static/css/main.c6ac2bae.chunk.css",
+    "static/js/main.0ac80384.chunk.js"
+  ]
+}

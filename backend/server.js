@@ -11,18 +11,27 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// PUBLIC STATIC FOLDER
-app.use(express.static("public"));
+if(process.env.NODE_ENV == "production"){
+  let prodPublicPath = path.join(__dirname, "../my-app/build/");
+  app.use(express.static(prodPublicPath));
+  // serving index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(prodPublicPath, 'index.html'));
+  });
+} else {
+   //telling express to serve up the public folder
+   var publicPath = path.join(__dirname, '..', 'public');
 
-// serving index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
-});
+  // serving index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+  }); 
 
-//telling express to serve up the public folder
-var publicPath = path.join(__dirname, '..', 'public');
-app.use(express.static(publicPath));
-
+ 
+  app.use(express.static(publicPath));
+}
+// serves image uploads
+app.use(express.static("public"))
 //ROUTE TO USER SIGNUP
 app.post('/signup',(req, res) => {
   let data = {name: req.body.userName, password: req.body.password};
@@ -39,7 +48,7 @@ db.User.create(data).then((createdUserRecord, err) => {
 });
 
 app.post('/catch',(req, res) => {
-  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId};
+  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId, img: filePath};
   console.log (data); // create catch table
  db.Catch.create(data).then(function(dbcatch){ 
    console.log(dbcatch)
