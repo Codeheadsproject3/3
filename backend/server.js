@@ -10,13 +10,6 @@ var catchapiroutes = require("./routes/catch-api-routes")
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-app 
-    .use(express.static('../public'))
-    .get('*',function (req,res) {
-        res.sendFile('../public/index.html');
-        })
- .listen(8080);
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 if(process.env.NODE_ENV == "production"){
@@ -26,20 +19,11 @@ if(process.env.NODE_ENV == "production"){
   app.get('*', (req, res) => {
     res.sendFile(path.join(prodPublicPath, 'index.html'));
   });
-} else {
-   //telling express to serve up the public folder
-   var publicPath = path.join(__dirname, '..', 'public');
+} 
 
-  // serving index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
-  }); 
 
- 
-  app.use(express.static(publicPath));
-}
 // serves image uploads
-app.use(express.static("public"))
+app.use(express.static("public", {index: false}))
 //ROUTE TO USER SIGNUP
 app.post('/signup',(req, res) => {
   let data = {name: req.body.userName, password: req.body.password};

@@ -10,13 +10,16 @@ const Card = styled.div`
   align-items: center;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
+  padding: 15px;
+  background-color: rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
 const Input = styled.input`
+  color: white;
   padding: 1rem;
   border: 1px solid #999;
   margin-bottom: 1rem;
