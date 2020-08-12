@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Card, Logo, Form, Input, Button, Error } from "../components/AuthForms";
 import { useHistory } from 'react-router-dom';
 import { useAuth } from "../context/auth";
+import MapSection from '../components/Map'
+
 
 function Catch(props) {
   const [latitude, setLatitude] = useState("");
@@ -42,8 +44,12 @@ function Catch(props) {
     // .then gotta finish this lines...
     }
   
-
-
+    const location = {
+      address: '1600 Amphitheatre Parkway, Mountain View, california.',
+      lat: 37.42216,
+      lng: -122.08427,
+    }
+  
   return (
     <Card>
       <Form>
@@ -127,10 +133,14 @@ function Catch(props) {
       }}
       placeholder="sunny? cloudy? rainy?"
     />
+    
 
         <Button onClick={postCatch}>Post your catch</Button>
+
       </Form>
     </Card>
+
+
     
     
     
