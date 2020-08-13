@@ -12,14 +12,6 @@ var PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-if(process.env.NODE_ENV == "production"){
-  let prodPublicPath = path.join(__dirname, "../my-app/build/");
-  app.use(express.static(prodPublicPath));
-  // serving index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(prodPublicPath, 'index.html'));
-  });
-} 
 
 
 // serves image uploads
@@ -114,6 +106,14 @@ app.post("/submit", function(req, res) {
 
 // Static directory to be served
 // app.use(express.static("app/public";
+if(process.env.NODE_ENV == "production"){
+  let prodPublicPath = path.join(__dirname, "../my-app/build/");
+  app.use(express.static(prodPublicPath));
+  // serving index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(prodPublicPath, 'index.html'));
+  });
+} 
 
 
 db.sequelize.sync({ force: true }).then(function() {
