@@ -18,6 +18,8 @@ function Catch(props) {
   const [fish, setFish] = useState("");
   const [temperature, setTemperature] = useState("");
   const [weathercondition, setWeatherCondition] = useState("");
+  const [image, setImage] = useState("");
+  const [dummyimage, setDummyImage] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
     const [isError, setIsError] = useState(false);
     const [userName, setUserName] = useState("");
@@ -26,30 +28,29 @@ function Catch(props) {
     const { authTokens } = useAuth();
   
 
-  function postCatch() {
+  function postCatch(e) {
+    e.preventDefault()
     let userId = authTokens.record.id
-    axios.post('/catch', {
-      latitude,
-      longitude,
-      weight,
-      length,
-      bait,
-      time,
-      date,
-      fish,
-      temperature,
-      weathercondition,
-      userId
-    }) 
+    let formData = new FormData();
+    formData.append("userId", userId)
+    formData.append("latitude", latitude)
+    formData.append("longitude", longitude)
+    formData.append("weight", weight)
+    formData.append("length", length)
+    formData.append("bait", bait)
+    formData.append("time", time)
+    formData.append("date", date)
+    formData.append("fish", fish)
+    formData.append("temperature", temperature)
+    formData.append("weathercondition", weathercondition)
+    formData.append("image", image)
+    axios.post('/api/catch', formData, {headers: {'Content-Type': 'multipart/form-data' }}) 
+      
+     
     // .then gotta finish this lines...
     }
   
-    const location = {
-      address: '1600 Amphitheatre Parkway, Mountain View, california.',
-      lat: 37.42216,
-      lng: -122.08427,
-    }
-  
+    
   return (
     <Card>
       <Form>
@@ -133,7 +134,17 @@ function Catch(props) {
       }}
       placeholder="sunny? cloudy? rainy?"
     />
-    
+    <Input
+      type="file"
+      value={dummyimage}
+      onChange={e => {
+        setDummyImage(e.target.value)
+        setImage(e.target.files[0]);
+        console.log(e.target.value);
+      }}
+
+      
+    />
 
         <Button onClick={postCatch}>Post your catch</Button>
 

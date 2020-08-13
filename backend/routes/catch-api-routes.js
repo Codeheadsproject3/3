@@ -3,6 +3,7 @@ var db = require("../models");
 const multer = require("multer");
 const path = require("path");
 
+
 // SET STORAGE ENGINE
 const storage = multer.diskStorage({
   destination: "./public/uploads",
@@ -19,9 +20,10 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 1000000 },
   fileFilter: function (req, file, cb) {
+    console.log(file);
     checkFileType(file, cb);
   },
-}).single("myImage");
+}).single("image");
 
 function checkFileType(file, cb) {
   // ALLOED FILE EXTENSIONS
@@ -76,6 +78,41 @@ module.exports = function(app) {
     });
   });
 
+  app.post('/api/catch', upload, (req, res, next) => {
+    console.log(req.file)
+    let filePath = "/uploads/" + req.file.filename;
+    let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId, img: filePath};
+    console.log (data); // create catch table
+   db.Catch.create(data).then(function(dbcatch){ 
+     console.log(dbcatch)
+     res.json(dbcatch)
+   })
+  });
+
+   // DELETE route for deleting catch
+   app.delete("/api/catch/:id", function(req, res) {
+    db.Catch.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbCatch) {
+      res.json(dbCatch);
+    });
+  });
+
+  // PUT route for updating catch
+  app.put("/api/catch", function(req, res) {
+    db.Catch.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbCatch) {
+      res.json(dbCatch);
+    });
+  });
+
   // POST route for saving a new post
     // app.get("/api/catch", (req, res) => res.render("index"));
     app.post("/upload2/:catchId", upload, (req, res) => {
@@ -109,26 +146,4 @@ module.exports = function(app) {
 };
  
 
-  // DELETE route for deleting catch
-  app.delete("/api/catch/:id", function(req, res) {
-    db.Catch.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbCatch) {
-      res.json(dbCatch);
-    });
-  });
-
-  // PUT route for updating catch
-  app.put("/api/catch", function(req, res) {
-    db.Catch.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbCatch) {
-      res.json(dbCatch);
-    });
-  });
+ 

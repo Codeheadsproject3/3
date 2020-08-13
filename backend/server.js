@@ -3,6 +3,7 @@ var express = require("express");
 var app = express();
 // Requiring our models for syncing
 var db = require("./models");
+var catchapiroutes = require("./routes/catch-api-routes")
 
 // Sets up the Express App
 // =============================================================
@@ -18,20 +19,11 @@ if(process.env.NODE_ENV == "production"){
   app.get('*', (req, res) => {
     res.sendFile(path.join(prodPublicPath, 'index.html'));
   });
-} else {
-   //telling express to serve up the public folder
-   var publicPath = path.join(__dirname, '..', 'public');
+} 
 
-  // serving index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
-  }); 
 
- 
-  app.use(express.static(publicPath));
-}
 // serves image uploads
-app.use(express.static("public"))
+app.use(express.static("public", {index: false}))
 //ROUTE TO USER SIGNUP
 app.post('/signup',(req, res) => {
   let data = {name: req.body.userName, password: req.body.password};
@@ -48,7 +40,7 @@ db.User.create(data).then((createdUserRecord, err) => {
 });
 
 app.post('/catch',(req, res) => {
-  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId, img: filePath};
+  let data = {latitude: req.body.latitude, longitude: req.body.longitude, weight: req.body.weight, length: req.body.length, bait: req.body.bait, time: req.body.time, date: req.body.date, fish: req.body.fish, temperature: req.body.temperature, weathercondition: req.body.weathercondition, UserId: req.body.userId};
   console.log (data); // create catch table
  db.Catch.create(data).then(function(dbcatch){ 
    console.log(dbcatch)
@@ -56,6 +48,7 @@ app.post('/catch',(req, res) => {
  })
 });
 
+catchapiroutes(app);
 // When the server starts, create and save a new User document to the db
 db.User.create({ name: "" })
   .then(function(dbUser) {
